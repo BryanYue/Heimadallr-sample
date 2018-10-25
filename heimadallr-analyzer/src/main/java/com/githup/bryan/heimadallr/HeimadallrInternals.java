@@ -5,6 +5,7 @@ import java.util.List;
 
 public class HeimadallrInternals {
 
+
     private static HeimadallrInternals sInstance;
     private static HeimadallrContext sContext;
     private List<HeimadallrInterceptor> mInterceptorChain = new LinkedList<>();
@@ -12,6 +13,10 @@ public class HeimadallrInternals {
     public  LooperMonitor monitor;
     public StackSampler stackSampler;
     public CpuSampler cpuSampler;
+
+
+
+
 
     public static HeimadallrInternals getInstance() {
         if (sInstance == null) {
