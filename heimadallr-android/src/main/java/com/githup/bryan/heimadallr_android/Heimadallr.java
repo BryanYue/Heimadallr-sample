@@ -1,13 +1,20 @@
-package com.githup.bryan.heimadallr;
+package com.githup.bryan.heimadallr_android;
 
 
+import android.Manifest;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Looper;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 
-import com.githup.bryan.heimadallr.ui.DisplayActivity;
+import com.githup.bryan.heimadallr_analyzer.HeimadallrContext;
+import com.githup.bryan.heimadallr_analyzer.HeimadallrInternals;
+import com.githup.bryan.heimadallr_android.ui.DisplayActivity;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -23,6 +30,9 @@ public class Heimadallr {
     private HeimadallrInternals mHeimadallrCore;
     private boolean mMonitorStarted = false;
 
+    private  static String[] permissions = {Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+    private static final int HEIMADALLR_PERMISSION = 0x1111;
+
     public Heimadallr() {
         HeimadallrInternals.setContext(HeimadallrContext.get());
         mHeimadallrCore = HeimadallrInternals.getInstance();
@@ -33,8 +43,15 @@ public class Heimadallr {
         mHeimadallrCore.addBlockInterceptor(new DisplayService());
     }
 
-    public static Heimadallr install(Context context, HeimadallrContext heimadallrContext) {
-        HeimadallrContext.init(context, heimadallrContext);
+    public static Heimadallr install(Context context) {
+
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+//                new DisplayActivity().requestPermissions(permissions,HEIMADALLR_PERMISSION);
+//            }
+//        }
+
+        HeimadallrContext.init(context, new HeimadallrContext());
         setEnabled(context, DisplayActivity.class, HeimadallrContext.get().displayNotification());
         return get();
     }

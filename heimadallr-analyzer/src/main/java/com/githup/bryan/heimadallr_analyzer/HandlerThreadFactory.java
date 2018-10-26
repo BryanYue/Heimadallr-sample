@@ -1,4 +1,4 @@
-package com.githup.bryan.heimadallr;
+package com.githup.bryan.heimadallr_analyzer;
 
 import android.os.Handler;
 import android.os.HandlerThread;

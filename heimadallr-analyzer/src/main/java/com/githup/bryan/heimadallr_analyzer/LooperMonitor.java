@@ -1,4 +1,4 @@
-package com.githup.bryan.heimadallr;
+package com.githup.bryan.heimadallr_analyzer;
 
 import android.os.Debug;
 import android.os.SystemClock;
@@ -24,7 +24,7 @@ public class LooperMonitor implements Printer {
     }
 
     public LooperMonitor(long heimadallrThresholdMillis, boolean stopWhenDebugging,HeimadallrListener heimadallrListener) {
-        if (mHeimadallrListener == null) {
+        if (heimadallrListener == null) {
             throw new IllegalArgumentException("HeimadallrListener should not be null.");
         }
         this.mHeimadallrListener = heimadallrListener;

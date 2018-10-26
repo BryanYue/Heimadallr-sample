@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">heimadallr-android</string>
+    <string name="heimadallr_display_activity_label">Blocks</string>
+    <string name="heimadallr_share_leak">Share info</string>
+    <string name="heimadallr_share_stack_dump">Share stack dump</string>
+    <string name="heimadallr_share_with">Share with…</string>
+    <string name="heimadallr_block_list_title">Blocks in %s</string>
+    <string name="heimadallr_delete">Delete</string>
+    <string name="heimadallr_delete_all">Delete all</string>
+    <string name="heimadallr_delete_all_dialog_content">Are you sure to delete all records?</string>
+    <string name="heimadallr_class_has_blocked">blocked %s ms</string>
+    <string name="heimadallr_notification_message">Click for more details</string>
+    <string name="heimadallr_yes">Yes</string>
+    <string name="heimadallr_no">No</string>
 </resources>

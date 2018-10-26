@@ -1,4 +1,4 @@
-package com.githup.bryan.heimadallr;
+package com.githup.bryan.heimadallr_android;
 
 import java.util.concurrent.ThreadFactory;
 

@@ -1,2 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.githup.bryan.heimadallr.core" />
+    package="com.githup.bryan.heimadallr.core"
+    >
+
+
+
+    <!-- To store the heap dumps and leak analysis results. -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application />
+</manifest>

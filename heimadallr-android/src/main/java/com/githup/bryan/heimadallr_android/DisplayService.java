@@ -1,8 +1,9 @@
-package com.githup.bryan.heimadallr;
+package com.githup.bryan.heimadallr_android;
 
 import android.content.Context;
 
-import com.githup.bryan.heimadallr.internal.HeimadallrInfo;
+import com.githup.bryan.heimadallr_analyzer.HeimadallrInterceptor;
+import com.githup.bryan.heimadallr_analyzer.internal.HeimadallrInfo;
 
 public class DisplayService implements HeimadallrInterceptor {
     @Override

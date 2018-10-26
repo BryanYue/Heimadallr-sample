@@ -1,10 +1,10 @@
-package com.githup.bryan.heimadallr;
+package com.githup.bryan.heimadallr_analyzer;
 
 import android.content.Context;
 
-import com.githup.bryan.heimadallr.internal.HeimadallrInfo;
+import com.githup.bryan.heimadallr_analyzer.internal.HeimadallrInfo;
 
-public class HeimadallrContext  implements  HeimadallrInterceptor{
+public class HeimadallrContext implements HeimadallrInterceptor {
 
     private static Context sApplicationContext;
     private static HeimadallrContext sInstance = null;
@@ -29,8 +29,32 @@ public class HeimadallrContext  implements  HeimadallrInterceptor{
         return sApplicationContext;
     }
 
+    public String provideQualifier() {
+        return "unknown";
+    }
+
+    public String provideUid() {
+        return "uid";
+    }
+
+    public String provideNetworkType() {
+        return "unknown";
+    }
+
     public int provideMonitorDuration() {
         return -1;
+    }
+
+    public int provideBlockThreshold() {
+        return 1000;
+    }
+
+    public int provideDumpInterval() {
+        return provideBlockThreshold();
+    }
+
+    public String providePath() {
+        return "/Heimadallr/";
     }
 
 
@@ -40,9 +64,13 @@ public class HeimadallrContext  implements  HeimadallrInterceptor{
     }
 
 
-
-
     public boolean displayNotification() {
+        return true;
+    }
+
+
+
+    public boolean stopWhenDebugging() {
         return true;
     }
 }
