@@ -60,6 +60,7 @@ public class HeimadallrInternals {
                             .setRecentCpuRate(cpuSampler.getCpuRateInfo())
                             .setThreadStackEntries(threadStackEntries)
                             .flushString();
+
                     LogWriter.save(heimadallrInfo.toString());
 
                     if (mInterceptorChain.size() != 0) {

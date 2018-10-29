@@ -10,9 +10,10 @@ public class HeimadallrContext implements HeimadallrInterceptor {
     private static HeimadallrContext sInstance = null;
 
 
-    public static void init(Context context, HeimadallrContext heimadallrContext) {
+    public static void init(Context context) {
+        sInstance = new HeimadallrContext();
         sApplicationContext = context;
-        sInstance = heimadallrContext;
+
     }
 
 

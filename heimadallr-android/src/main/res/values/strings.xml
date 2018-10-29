@@ -11,4 +11,8 @@
     <string name="heimadallr_notification_message">Click for more details</string>
     <string name="heimadallr_yes">Yes</string>
     <string name="heimadallr_no">No</string>
+
+
+    <string name="cancel">取消</string>
+    <string name="confirm">确定</string>
 </resources>

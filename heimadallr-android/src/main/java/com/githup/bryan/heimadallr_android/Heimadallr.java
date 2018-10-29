@@ -8,13 +8,13 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Looper;
 import android.preference.PreferenceManager;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.githup.bryan.heimadallr_analyzer.HeimadallrContext;
 import com.githup.bryan.heimadallr_analyzer.HeimadallrInternals;
 import com.githup.bryan.heimadallr_android.ui.DisplayActivity;
+import com.githup.bryan.heimadallr_android.ui.PermissionActivity;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -30,8 +30,7 @@ public class Heimadallr {
     private HeimadallrInternals mHeimadallrCore;
     private boolean mMonitorStarted = false;
 
-    private  static String[] permissions = {Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
-    private static final int HEIMADALLR_PERMISSION = 0x1111;
+
 
     public Heimadallr() {
         HeimadallrInternals.setContext(HeimadallrContext.get());
@@ -43,17 +42,25 @@ public class Heimadallr {
         mHeimadallrCore.addBlockInterceptor(new DisplayService());
     }
 
-    public static Heimadallr install(Context context) {
+    public static void install(Context context) {
+        HeimadallrContext.init(context);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+                Log.e("====================", "1");
+                PermissionActivity.startPermissionActivity(context);
+            }else {
+                initHeimadallr();
+            }
+        }else {
+            initHeimadallr();
+        }
 
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-//                new DisplayActivity().requestPermissions(permissions,HEIMADALLR_PERMISSION);
-//            }
-//        }
 
-        HeimadallrContext.init(context, new HeimadallrContext());
-        setEnabled(context, DisplayActivity.class, HeimadallrContext.get().displayNotification());
-        return get();
+    }
+
+    private static void initHeimadallr() {
+        setEnabled(HeimadallrContext.get().provideContext(), DisplayActivity.class, HeimadallrContext.get().displayNotification());
+        get().start();
     }
 
 
@@ -62,6 +69,7 @@ public class Heimadallr {
             synchronized (Heimadallr.class) {
                 if (sInstance == null) {
                     sInstance = new Heimadallr();
+                    sInstance.start();
                 }
             }
         }
@@ -105,7 +113,7 @@ public class Heimadallr {
     }
 
 
-    private static void setEnabled(Context context,
+    public static void setEnabled(Context context,
                                    final Class<?> componentClass,
                                    final boolean enabled) {
         final Context appContext = context.getApplicationContext();

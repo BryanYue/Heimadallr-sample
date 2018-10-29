@@ -10,6 +10,7 @@ public class DemoAPP  extends Application {
     public void onCreate() {
         super.onCreate();
 
-        Heimadallr.install(this).start();
+        Heimadallr.install(this);
     }
+
 }

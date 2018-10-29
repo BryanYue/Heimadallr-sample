@@ -1,13 +1,9 @@
 package com.githup.bryan.heimadallr_analyzer.internal;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
@@ -33,6 +29,7 @@ public class HeimadallrInfo {
     public static final String KEY_API = "api-level";
     public static final String KEY_IMEI = "imei";
     public static final String KEY_UID = "uid";
+    public static final String KEY_MAC= "mac";
     public static final String KEY_CPU_CORE = "cpu-core";
     public static final String KEY_CPU_BUSY = "cpu-busy";
     public static final String KEY_CPU_RATE = "cpu-rate";
@@ -115,9 +112,11 @@ public class HeimadallrInfo {
         Context context = HeimadallrInternals.getContext().provideContext();
         if (heimadallrInfo.versionName == null || heimadallrInfo.versionName.length() == 0) {
             try {
-                PackageInfo info = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
-                heimadallrInfo.versionCode = info.getLongVersionCode();
-                heimadallrInfo.versionName = info.versionName;
+                Log.e(TAG, context.getPackageName()+"");
+                PackageManager packageManager = context.getPackageManager();
+                PackageInfo  packageInfo =packageManager.getPackageInfo(context.getPackageName(),0);
+                heimadallrInfo.versionCode =packageInfo.versionCode;
+                heimadallrInfo.versionName = packageInfo.versionName;
             } catch (Throwable e) {
                 Log.e(TAG, NEW_INSTANCE_METHOD, e);
             }
