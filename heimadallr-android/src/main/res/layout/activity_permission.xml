@@ -2,7 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cl"
-    android:visibility="visible"
+   android:background="@android:color/transparent"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -35,7 +35,7 @@
         android:layout_height="0dp"
         android:background="@android:color/white"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@id/tv_cont"
+        app:layout_constraintTop_toBottomOf="@id/tv_cont"
         app:layout_constraintHeight_percent="0.083"
         app:layout_constraintStart_toStartOf=" @id/tv_cont"
         app:layout_constraintWidth_percent="0.6875">

@@ -2,12 +2,14 @@ package com.githup.bryan.heimadallr_android;
 
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Looper;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
@@ -46,7 +48,7 @@ public class Heimadallr {
         HeimadallrContext.init(context);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-                Log.e("====================", "1");
+
                 PermissionActivity.startPermissionActivity(context);
             }else {
                 initHeimadallr();
