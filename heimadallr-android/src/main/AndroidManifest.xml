@@ -15,10 +15,7 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name="com.githup.bryan.heimadallr_android.ui.PermissionActivity"
-            android:taskAffinity="com.githup.bryan.heimadallr"
-            android:theme="@style/DialogActivity" />
+
 
     </application>
 

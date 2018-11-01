@@ -1,22 +1,15 @@
 package com.githup.bryan.heimadallr_android;
 
 
-import android.Manifest;
-import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Looper;
 import android.preference.PreferenceManager;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.util.Log;
 
 import com.githup.bryan.heimadallr_analyzer.HeimadallrContext;
 import com.githup.bryan.heimadallr_analyzer.HeimadallrInternals;
 import com.githup.bryan.heimadallr_android.ui.DisplayActivity;
-import com.githup.bryan.heimadallr_android.ui.PermissionActivity;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -33,7 +26,6 @@ public class Heimadallr {
     private boolean mMonitorStarted = false;
 
 
-
     public Heimadallr() {
         HeimadallrInternals.setContext(HeimadallrContext.get());
         mHeimadallrCore = HeimadallrInternals.getInstance();
@@ -46,16 +38,7 @@ public class Heimadallr {
 
     public static void install(Context context) {
         HeimadallrContext.init(context);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-
-                PermissionActivity.startPermissionActivity(context);
-            }else {
-                initHeimadallr();
-            }
-        }else {
-            initHeimadallr();
-        }
+        initHeimadallr();
 
 
     }
@@ -116,8 +99,8 @@ public class Heimadallr {
 
 
     public static void setEnabled(Context context,
-                                   final Class<?> componentClass,
-                                   final boolean enabled) {
+                                  final Class<?> componentClass,
+                                  final boolean enabled) {
         final Context appContext = context.getApplicationContext();
         executeOnFileIoThread(new Runnable() {
             @Override
