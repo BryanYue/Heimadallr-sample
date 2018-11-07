@@ -4,6 +4,7 @@ package com.githup.bryan.heimadallr_android;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
 
