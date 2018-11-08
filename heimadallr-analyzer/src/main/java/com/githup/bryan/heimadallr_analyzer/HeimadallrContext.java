@@ -3,6 +3,7 @@ package com.githup.bryan.heimadallr_analyzer;
 import android.content.Context;
 
 import com.githup.bryan.heimadallr_analyzer.internal.HeimadallrInfo;
+import com.tencent.mmkv.MMKV;
 
 public class HeimadallrContext implements HeimadallrInterceptor {
 
@@ -11,6 +12,7 @@ public class HeimadallrContext implements HeimadallrInterceptor {
 
 
     public static void init(Context context) {
+        MMKV.initialize(context);
         sInstance = new HeimadallrContext();
         sApplicationContext = context;
 

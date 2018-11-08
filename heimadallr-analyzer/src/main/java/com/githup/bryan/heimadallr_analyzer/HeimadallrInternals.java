@@ -4,9 +4,12 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.os.Looper;
+import android.util.Log;
 
 import com.githup.bryan.heimadallr_analyzer.internal.HeimadallrInfo;
+import com.tencent.mmkv.MMKV;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
@@ -23,7 +26,7 @@ public class HeimadallrInternals {
     public LooperMonitor monitor;
     public StackSampler stackSampler;
     public CpuSampler cpuSampler;
-
+    long startTime=0;
 
     public static HeimadallrInternals getInstance() {
         if (sInstance == null) {
@@ -43,7 +46,7 @@ public class HeimadallrInternals {
 
         cpuSampler = new CpuSampler(sContext.provideDumpInterval());
 
-        setMonitor(new LooperMonitor( getContext().provideBlockThreshold(),getContext().stopWhenDebugging(),new LooperMonitor.HeimadallrListener() {
+        setMonitor(new LooperMonitor(getContext().provideBlockThreshold(), getContext().stopWhenDebugging(), new LooperMonitor.HeimadallrListener() {
 
             @Override
             public void onBlockEvent(long realTimeStart, long realTimeEnd,
@@ -61,7 +64,19 @@ public class HeimadallrInternals {
                             .setThreadStackEntries(threadStackEntries)
                             .flushString();
 
+                     startTime = System.currentTimeMillis();
                     LogWriter.save(heimadallrInfo.toString());
+                    Log.e("INTERVALS_LOGWRITER",System.currentTimeMillis()-startTime+"");
+
+                    String path = "";
+                    startTime = System.currentTimeMillis();
+                    path = "looper" + "-" + LogWriter.FILE_NAME_FORMATTER.format(startTime) + ".log";
+//                    MMKV.defaultMMKV().encode(path, heimadallrInfo.toString());
+                    MMKV.defaultMMKV(MMKV.MULTI_PROCESS_MODE,"looper1").encode(path, heimadallrInfo.toString());
+                    Log.e("INTERVALS_MMKV",System.currentTimeMillis()-startTime+"");
+
+                    Log.e("INTERVALS_MMKV",MMKV.defaultMMKV(MMKV.MULTI_PROCESS_MODE,"looper1").allKeys().length+"");
+
 
                     if (mInterceptorChain.size() != 0) {
                         for (HeimadallrInterceptor interceptor : mInterceptorChain) {

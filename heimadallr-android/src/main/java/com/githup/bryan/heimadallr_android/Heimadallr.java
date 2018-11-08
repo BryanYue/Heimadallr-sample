@@ -38,6 +38,7 @@ public class Heimadallr {
     }
 
     public static void install(Context context) {
+
         HeimadallrContext.init(context);
         initHeimadallr();
 
