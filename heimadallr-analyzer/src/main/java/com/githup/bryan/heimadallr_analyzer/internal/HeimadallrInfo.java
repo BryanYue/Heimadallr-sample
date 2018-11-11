@@ -112,6 +112,7 @@ public class HeimadallrInfo {
         Context context = HeimadallrInternals.getContext().provideContext();
         if (heimadallrInfo.versionName == null || heimadallrInfo.versionName.length() == 0) {
             try {
+                ProcessUtils.getTid();
                 Log.e(TAG, context.getPackageName()+"");
                 PackageManager packageManager = context.getPackageManager();
                 PackageInfo  packageInfo =packageManager.getPackageInfo(context.getPackageName(),0);

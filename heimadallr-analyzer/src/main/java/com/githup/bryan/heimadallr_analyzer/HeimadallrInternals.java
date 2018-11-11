@@ -7,6 +7,7 @@ import android.os.Looper;
 import android.util.Log;
 
 import com.githup.bryan.heimadallr_analyzer.internal.HeimadallrInfo;
+import com.githup.bryan.heimadallr_analyzer.internal.ProcessUtils;
 import com.tencent.mmkv.MMKV;
 
 import java.io.BufferedWriter;
@@ -66,6 +67,7 @@ public class HeimadallrInternals {
 
                      startTime = System.currentTimeMillis();
                     LogWriter.save(heimadallrInfo.toString());
+
                     Log.e("INTERVALS_LOGWRITER",System.currentTimeMillis()-startTime+"");
 
                     String path = "";

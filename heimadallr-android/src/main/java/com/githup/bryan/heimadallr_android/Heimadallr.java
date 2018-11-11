@@ -7,9 +7,11 @@ import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.githup.bryan.heimadallr_analyzer.HeimadallrContext;
 import com.githup.bryan.heimadallr_analyzer.HeimadallrInternals;
+import com.githup.bryan.heimadallr_analyzer.internal.ProcessUtils;
 import com.githup.bryan.heimadallr_android.ui.DisplayActivity;
 
 import java.util.concurrent.Executor;
@@ -28,6 +30,7 @@ public class Heimadallr {
 
 
     public Heimadallr() {
+        getTid();
         HeimadallrInternals.setContext(HeimadallrContext.get());
         mHeimadallrCore = HeimadallrInternals.getInstance();
         mHeimadallrCore.addBlockInterceptor(HeimadallrContext.get());
@@ -38,10 +41,8 @@ public class Heimadallr {
     }
 
     public static void install(Context context) {
-
         HeimadallrContext.init(context);
         initHeimadallr();
-
 
     }
 
@@ -49,6 +50,8 @@ public class Heimadallr {
         setEnabled(HeimadallrContext.get().provideContext(), DisplayActivity.class, HeimadallrContext.get().displayNotification());
         get().start();
     }
+
+
 
 
     public static Heimadallr get() {
@@ -136,4 +139,10 @@ public class Heimadallr {
     }
 
 
+
+    public static int getTid() {
+        int tid = android.os.Process.myTid();
+        Log.e("====================", "Tid:"+tid);
+        return tid;
+    }
 }

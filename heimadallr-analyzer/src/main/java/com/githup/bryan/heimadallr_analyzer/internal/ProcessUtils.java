@@ -3,6 +3,7 @@ package com.githup.bryan.heimadallr_analyzer.internal;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.util.Log;
 
 
 import com.githup.bryan.heimadallr_analyzer.HeimadallrInternals;
@@ -43,5 +44,11 @@ public class ProcessUtils {
             }
         }
         return null;
+    }
+
+    public static int getTid() {
+        int tid = android.os.Process.myTid();
+        Log.e("====================", "Tid:"+tid);
+        return tid;
     }
 }

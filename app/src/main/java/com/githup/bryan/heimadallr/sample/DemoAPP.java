@@ -21,7 +21,7 @@ public class DemoAPP  extends Application {
 
 
         Heimadallr.install(this);
-
+        Heimadallr.getTid();
 //        GodEye.instance().init(this);
 //        if (isMainProcess(this)) {//安装只能在主进程
 //            GodEye.instance()

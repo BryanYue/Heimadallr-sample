@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.githup.bryan.heimadallr_android.Heimadallr;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -11,13 +13,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
             Log.e("====================", "onClick of R.id.button1: ", e);
         }
+
+
 
     }
 
